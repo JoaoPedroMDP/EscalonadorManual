@@ -6,8 +6,14 @@ namespace Classes\Operations;
 
 use Classes\Elements\Line;
 use Classes\Elements\Matrix;
+use Classes\Loggers\Loggable;
+use Exception;
 
-abstract class Operation
+/**
+ * Class Operation
+ * @package Classes\Operations
+ */
+abstract class Operation extends Loggable
 {
     /**
      * @var Matrix
@@ -19,10 +25,16 @@ abstract class Operation
      */
     protected $indexBeingAffected;
 
-    public function __construct(Matrix $matrix, int $indexBeingAffected)
+		/**
+		 * @param Matrix $matrix
+		 * @param int $indexBeingAffected
+		 * @throws Exception
+		 */
+		public function __construct(Matrix $matrix, int $indexBeingAffected)
     {
         $this->matrix = $matrix;
         $this->indexBeingAffected = $indexBeingAffected;
+				parent::__construct();
     }
 
     /**
@@ -42,9 +54,6 @@ abstract class Operation
     {
         $matrixCopy = $this->matrix;
         $matrixCopy->setLine($this->getResult(), $this->indexBeingAffected);
-        echo "\n";
-				$this->getResult()->print();
-				echo "\n";
         return $matrixCopy;
     }
 
@@ -53,6 +62,7 @@ abstract class Operation
      */
     public function applyOnMatrix()
     {
+    		$this->log($this->matrix, $this->getLogLine(), $this->getResultInMatrix());
         $this->matrix->setLine($this->getResult(), $this->indexBeingAffected);
     }
 }

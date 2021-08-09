@@ -57,7 +57,7 @@ class Output
 
     public static function areYouSure()
     {
-        echo "Deseja aplicar o resultado na matriz oficial? Y para sim, N para não";
+        echo "Deseja aplicar o resultado na matriz oficial? Y para sim, N para não: ";
     }
 
 }

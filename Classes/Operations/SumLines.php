@@ -8,6 +8,10 @@ namespace Classes\Operations;
 use Classes\Elements\Line;
 use Classes\Elements\Matrix;
 
+/**
+ * Class SumLines
+ * @package Classes\Operations
+ */
 class SumLines extends Operation
 {
     /**
@@ -38,6 +42,9 @@ class SumLines extends Operation
 				parent::__construct($matrix, $receiverLine->getIndex());
 		}
 
+		/**
+		 * Executa a operação
+		 */
 		public function execute()
     {
         $results = [];
@@ -56,4 +63,12 @@ class SumLines extends Operation
 		{
         return $this->result;
     }
+
+    public function getLogLine(): string
+		{
+				$receiverLine = $this->receiverLine->getIndex();
+				$incomingLine = $this->incomingLine->getIndex();
+
+				return "L$receiverLine = L$receiverLine +L$incomingLine";
+		}
 }

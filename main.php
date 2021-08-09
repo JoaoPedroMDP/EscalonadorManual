@@ -17,28 +17,12 @@ use Classes\Outputs\Output;
 
 include 'autoloader.php';
 
-//Para debugar
-function showMatrix(array $matrix)
-{
-    foreach($matrix as $line => $values){
-        foreach($values as $column => $value)
-        {
-            echo "$value ";
-        }
-        echo"\n";
-    }
-    echo"\n";
-}
-function showArray(array $array)
-{
-    foreach($array as $element)
-    {
-        echo "$element ";
-    }
-    echo "\n";
-}
-
-function getMatrix(array $matrix, int $line)
+/**
+ * @param array $matrix
+ * @param int $line
+ * @return array
+ */
+function getMatrix(array $matrix, int $line): array
 {
     $input = readline("Linha $line:");
     try{
@@ -56,7 +40,7 @@ function getMatrix(array $matrix, int $line)
  * @return array
  * @throws EndOfInput
  */
-function parseInput(string $rawInput)
+function parseInput(string $rawInput): array
 {
     $arrayedInput = str_split($rawInput);
 
@@ -87,6 +71,10 @@ function parseInput(string $rawInput)
 }
 
 
+/**
+ * @param OperationBuilder $operationBuilder
+ * @param Matrix $matrix
+ */
 function executeOperation(OperationBuilder $operationBuilder, Matrix $matrix)
 {
     $inputGetter = new InputGetter();
@@ -100,6 +88,9 @@ function executeOperation(OperationBuilder $operationBuilder, Matrix $matrix)
     }
 }
 
+/**
+ * Entrada do programa
+ */
 function main()
 {
     Output::intro();
@@ -107,11 +98,12 @@ function main()
 //    $matrix = new Matrix(getMatrix([], 1));
     $matrix = new Matrix(
         [
-            [1,2,3],
-            [4,5,6],
-            [7,8,9]
+            [1,1,1],
+            [1,1,1],
+            [1,1,1]
         ]
     );
+
     Output::chooseOption();
     $inputGetter = new InputGetter();
     $option = $inputGetter->getChar();
@@ -147,10 +139,13 @@ function main()
             executeOperation($operationBuilder, $matrix);
         }
 
+				if(!$userWantsToExit)
+				{
+						Output::chooseOption();
+						$option = $inputGetter->getChar();
+				}
 
-        Output::chooseOption();
-        $option = $inputGetter->getChar();
-    }
+		}
 }
 
 main();

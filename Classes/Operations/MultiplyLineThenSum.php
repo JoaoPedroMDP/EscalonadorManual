@@ -7,6 +7,10 @@ namespace Classes\Operations;
 use Classes\Elements\Line;
 use Classes\Elements\Matrix;
 
+/**
+ * Class MultiplyLineThenSum
+ * @package Classes\Operations
+ */
 class MultiplyLineThenSum extends MultiplyLine
 {
     /**
@@ -31,11 +35,26 @@ class MultiplyLineThenSum extends MultiplyLine
         );
     }
 
-    public function execute()
+		/**
+		 * Executa a operação
+		 */
+		public function execute()
     {
         parent::execute();
         $sum = new SumLines($this->matrix, $this->receiverLine, $this->lineToMultiply);
         $sum->execute();
         $this->result = $sum->getResult();
     }
+
+		/**
+		 * @return string
+		 */
+		public function getLogLine(): string
+		{
+				$affectedLine = $this->indexBeingAffected;
+				$multipliedLine = $this->lineToMultiply->getIndex();
+				$multiplier = $this->multiplier;
+
+				return "L$affectedLine = (L$multipliedLine x $multiplier) + L$affectedLine";
+		}
 }

@@ -5,7 +5,12 @@ namespace Classes\Operations;
 
 use Classes\Elements\Line;
 use Classes\Elements\Matrix;
+use Exception;
 
+/**
+ * Class MultiplyLine
+ * @package Classes\Operations
+ */
 class MultiplyLine extends Operation
 {
     /**
@@ -23,12 +28,13 @@ class MultiplyLine extends Operation
      */
     protected $result;
 
-    /**
-     * MultiplyLine constructor.
-     * @param Matrix $matrix
-     * @param Line $lineToMultiply
-     * @param int $multiplier
-     */
+		/**
+		 * MultiplyLine constructor.
+		 * @param Matrix $matrix
+		 * @param Line $lineToMultiply
+		 * @param int $multiplier
+		 * @throws Exception
+		 */
     public function __construct(Matrix $matrix, Line $lineToMultiply, int $multiplier)
     {
         $this->lineToMultiply = $lineToMultiply;
@@ -57,4 +63,14 @@ class MultiplyLine extends Operation
     {
         return $this->result;
     }
+
+		/**
+		 * @return string
+		 */
+		public function getLogLine(): string
+		{
+				$affectedLine = $this->indexBeingAffected;
+				$multiplier = $this->multiplier;
+				return "L$affectedLine = L$affectedLine x $multiplier";
+		}
 }
