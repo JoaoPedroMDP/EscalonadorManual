@@ -6,7 +6,11 @@ namespace Classes\Outputs;
 
 use Classes\Operations\OperationsConstructors\MultiplyLineThenSumBuilder;
 
-class Output
+/**
+ * Class Output
+ * @package Classes\Outputs
+ */
+class Output extends HaveColors
 {
     public static function intro()
     {
@@ -20,19 +24,20 @@ class Output
         echo "Agora, selecione uma opção\n";
         echo "  1) Multiplicar uma linha\n";
         echo "  2) Somar linha A em linha B\n";
-        echo "  3) Multiplicar A e somar em B\n";
-        echo "  4) Mostrar matriz\n";
+        echo "  3) Subtrair linha B de linha A\n";
+        echo "  4) Multiplicar A e somar em B\n";
+        echo "  5) Mostrar matriz\n";
         echo "  q) Sair do programa\n";
     }
 
     public static function goodbye()
     {
-        echo "Falô :)";
+        echo "Falô :)\n";
     }
 
     public static function optionNotFound()
     {
-        echo "Opção não encontrada";
+        echo "Opção não encontrada\n";
     }
 
     public static function getData(string $string)
@@ -40,7 +45,11 @@ class Output
         echo "Insira $string:";
     }
 
-    public static function operationInstructions(string $class)
+		/**
+		 * Imprime as instruções baseando-se na classe passada
+		 * @param string $class
+		 */
+		public static function operationInstructions(string $class)
     {
         switch($class)
         {

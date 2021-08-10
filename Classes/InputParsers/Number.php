@@ -29,20 +29,30 @@ class Number extends InputGetter
      */
     public function setNumber(string $number)
     {
-        $this->numberAsString;
+        $this->numberAsString = $number;
     }
 
-    public function addDigit(string $digit)
+		/**
+		 * Adiciona um dígito no número
+		 * @param string $digit
+		 */
+		public function addDigit(string $digit)
     {
         $this->numberAsString .= $digit;
     }
 
-    public function invertSignal()
+		/**
+		 * Inverte o sinal do número
+		 */
+		public function invertSignal()
     {
         $this->isNegative = !$this->isNegative;
     }
 
-    public function getNumberFromInput()
+		/**
+		 * Pega um número do buffer de entrada
+		 */
+		public function buildFromInput()
     {
         $input = $this->getLine();
 
@@ -57,6 +67,7 @@ class Number extends InputGetter
                 )
             );
         }
+
         $this->setNumber($input);
     }
 }

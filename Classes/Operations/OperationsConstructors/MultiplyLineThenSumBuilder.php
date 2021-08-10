@@ -26,7 +26,7 @@ class MultiplyLineThenSumBuilder extends OperationBuilder
 
         Output::getData("o multiplicador da linha A");
         $number = new Number();
-        $number->getNumberFromInput();
+        $number->buildFromInput();
 
         return new MultiplyLineThenSum(
             $matrix,

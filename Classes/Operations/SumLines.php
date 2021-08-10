@@ -7,6 +7,7 @@ namespace Classes\Operations;
 
 use Classes\Elements\Line;
 use Classes\Elements\Matrix;
+use Exception;
 
 /**
  * Class SumLines
@@ -34,6 +35,7 @@ class SumLines extends Operation
 		 * @param Matrix $matrix
 		 * @param Line $incomingLine
 		 * @param Line $receiverLine
+		 * @throws Exception
 		 */
 		public function __construct(Matrix $matrix, Line $incomingLine, Line $receiverLine)
 		{
@@ -64,11 +66,14 @@ class SumLines extends Operation
         return $this->result;
     }
 
-    public function getLogLine(): string
+		/**
+		* @return string
+		*/
+		public function getLogLine(): string
 		{
-				$receiverLine = $this->receiverLine->getIndex();
-				$incomingLine = $this->incomingLine->getIndex();
+			$receiverLine = $this->receiverLine->getIndex();
+			$incomingLine = $this->incomingLine->getIndex();
 
-				return "L$receiverLine = L$receiverLine +L$incomingLine";
+			return "L$receiverLine = L$receiverLine +L$incomingLine";
 		}
 }

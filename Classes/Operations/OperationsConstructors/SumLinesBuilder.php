@@ -8,11 +8,19 @@ namespace Classes\Operations\OperationsConstructors;
 use Classes\Elements\Matrix;
 use Classes\Operations\SumLines;
 use Classes\Outputs\Output;
+use Exception;
 
+/**
+ * Class SumLinesBuilder
+ * @package Classes\Operations\OperationsConstructors
+ */
 class SumLinesBuilder extends OperationBuilder
 {
-    public function build(Matrix $matrix)
-    {
+		/**
+		 * @throws Exception
+		 */
+		public function build(Matrix $matrix): SumLines
+		{
         $this->printInstructions(self::class);
         Output::getData("a posição da linha de origem");
         $originLine = $this->getNatural();
@@ -22,8 +30,8 @@ class SumLinesBuilder extends OperationBuilder
 
         return new SumLines(
             $matrix,
-            $this->matrix->getLineFromUserInput($targetLine),
-            $this->matrix->getLineFromUserInput($originLine)
+            $this->matrix->getLineFromUserInput($originLine),
+            $this->matrix->getLineFromUserInput($targetLine)
         );
     }
 

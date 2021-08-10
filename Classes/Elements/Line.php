@@ -8,6 +8,9 @@ namespace Classes\Elements;
  * @package Classes\Elements
  */
 class Line{
+
+		protected const NUM_PAD = 5;
+
     /**
      * @var int
      */
@@ -33,20 +36,17 @@ class Line{
      */
     public function print()
     {
-        $this->showArray($this->elements);
+        $string = $this->toString();
+        echo $string."\n";
     }
 
-		/**
-		 * @param array $array
-		 */
-		private function showArray(array $array)
-    {
-        foreach($array as $element)
-        {
-            echo "$element ";
-        }
-        echo "\n";
-    }
+    public function fromArray(array $intArray)
+		{
+				foreach($intArray as $int)
+				{
+						$this->addElement($int);
+				}
+		}
 
 		/**
 		 * @return array
@@ -82,7 +82,7 @@ class Line{
 				$string = '';
 				foreach($this->elements as $key => $element)
 				{
-						$string .= "$element";
+						$string .= str_pad("$element",self::NUM_PAD, ' ', STR_PAD_LEFT);
 						if(!$this->isLastElement($key))
 						{
 								$string .= " ";
@@ -99,4 +99,33 @@ class Line{
 		{
 				return ++$key == count($this->elements);
 		}
+
+		/**
+		 * Inverte o sinal de todos os elementos da linha
+		 */
+		public function invertElementsSignal()
+		{
+				foreach($this->elements as $key => $element)
+				{
+						$this->setElement($key, -1 * $element);
+				}
+		}
+
+		/**
+		 * @param int $key
+		 * @param int $element
+		 */
+		private function setElement(int $key, int $element)
+		{
+				$this->elements[$key] = $element;
+		}
+
+		/**
+		 * @param $int
+		 */
+		private function addElement($int)
+		{
+				$this->elements[] = $int;
+		}
+
 }

@@ -26,10 +26,10 @@ abstract class Loggable{
 		 */
 		public function __construct()
 		{
-				$fileDescriptor = fopen(self::FILE_NAME, 'w+');
+				$fileDescriptor = fopen(self::FILE_NAME, 'a+');
 				if($fileDescriptor === false)
 				{
-						throw new Exception("Não foi possível criar o arquivo para escrita do log de atividades");
+						throw new Exception("Não foi possível criar o arquivo para escrita do log de atividades\n");
 				}
 
 				$this->file = $fileDescriptor;
@@ -74,11 +74,11 @@ abstract class Loggable{
 				$logLine = '';
 				for( $i = 0 ; $i < $matrixA->getLineCount(); $i++ )
 				{
-						$middleContent = $matrixA->isLastLine($i)? $this->justifyContent($operationLog, $spacing) : $spacing;
+						$middleContent = $matrixA->isLastLine($i)? $this->justifyContent($operationLog) : $spacing;
 						$logLine .= $matrixA->lineToString($i) . $middleContent . $matrixB->lineToString($i) . "\n";
 				}
 
-				return $logLine;
+				return $logLine."\n";
 		}
 
 		/**
@@ -88,21 +88,11 @@ abstract class Loggable{
 
 		/**
 		 * @param string $operationLog
-		 * @param string $spacing
 		 * @return string
 		 */
-		private function justifyContent(string $operationLog, string $spacing): string
+		private function justifyContent(string $operationLog): string
 		{
-				$numberOfSpacesRemaining = strlen($spacing) - strlen($operationLog);
-				$even = ($numberOfSpacesRemaining % 2 == 0);
-				$numberOfSpacesToConcatenate = intdiv($numberOfSpacesRemaining, 2);
-				$prefix = str_repeat(' ', $numberOfSpacesToConcatenate);
-
-				$suffix = !$even ?
-						str_repeat(' ', $numberOfSpacesToConcatenate):
-						str_repeat(' ', $numberOfSpacesToConcatenate++);
-
-				return $prefix.$operationLog.$suffix;
+				return str_pad($operationLog, self::STANDARD_SPACING, ' ', STR_PAD_BOTH);
 		}
 
 }

@@ -6,15 +6,22 @@ namespace Classes\Operations\OperationsConstructors;
 
 
 use Classes\Elements\Matrix;
+use Classes\InputParsers\Number;
 use Classes\Operations\MultiplyLine;
 use Classes\Operations\Operation;
 use Classes\Outputs\Output;
+use Exception;
 
+/**
+ * Class MultiplyLineBuilder
+ * @package Classes\Operations\OperationsConstructors
+ */
 class MultiplyLineBuilder extends OperationBuilder
 {
 		/**
 		 * @param Matrix $matrix
 		 * @return MultiplyLine
+		 * @throws Exception
 		 */
 		public function build(Matrix $matrix): MultiplyLine
     {
@@ -23,12 +30,13 @@ class MultiplyLineBuilder extends OperationBuilder
         $lineToBeMultipliedIndex = $this->getNatural();
 
         Output::getData("o multiplicador");
-        $multiplier = $this->getNatural();
+        $multiplier = new Number();
+        $multiplier->buildFromInput();
 
         return new MultiplyLine(
             $matrix,
             $this->matrix->getLineFromUserInput($lineToBeMultipliedIndex),
-            $multiplier
+            $multiplier->getNumber()
         );
     }
 }

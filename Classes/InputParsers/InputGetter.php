@@ -5,13 +5,18 @@ declare(strict_types=1);
 namespace Classes\InputParsers;
 
 
+/**
+ * Class InputGetter
+ * @package Classes\InputParsers
+ */
 class InputGetter
 {
+
     /**
      * @return int
      */
-    public function getNatural()
-    {
+    public function getNatural(): int
+		{
         $digit = $this->getChar();
         if(!is_numeric($digit))
         {
@@ -21,7 +26,10 @@ class InputGetter
         return intval($digit);
     }
 
-    protected function flushSTDIN()
+		/**
+		 * Limpa o buffer de entrada
+		 */
+		protected function flushSTDIN()
     {
         $in = [STDIN];
         $out = [];
@@ -34,8 +42,8 @@ class InputGetter
     /**
      * @return string
      */
-    public function getChar()
-    {
+    public function getChar(): string
+		{
         $this->flushSTDIN();
         return fgetc(STDIN);
     }
@@ -43,8 +51,8 @@ class InputGetter
     /**
      * @return string
      */
-    public function getLine()
-    {
+    public function getLine(): string
+		{
         $this->flushSTDIN();
         return readline();
     }

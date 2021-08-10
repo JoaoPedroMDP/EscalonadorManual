@@ -7,12 +7,11 @@ use Classes\Exceptions\EndOfInput;
 use Classes\InputParsers\InputGetter;
 use Classes\InputParsers\Number;
 use Classes\InputParsers\RowOfNumbers;
-use Classes\Operations\MultiplyLineThenSum;
-use Classes\Operations\Operation;
 use Classes\Operations\OperationsConstructors\MultiplyLineBuilder;
 use Classes\Operations\OperationsConstructors\MultiplyLineThenSumBuilder;
 use Classes\Operations\OperationsConstructors\OperationBuilder;
 use Classes\Operations\OperationsConstructors\SumLinesBuilder;
+use Classes\Operations\OperationsConstructors\SubtractLinesBuilder;
 use Classes\Outputs\Output;
 
 include 'autoloader.php';
@@ -90,6 +89,7 @@ function executeOperation(OperationBuilder $operationBuilder, Matrix $matrix)
 
 /**
  * Entrada do programa
+ * @throws Exception
  */
 function main()
 {
@@ -98,9 +98,10 @@ function main()
 //    $matrix = new Matrix(getMatrix([], 1));
     $matrix = new Matrix(
         [
-            [1,1,1],
-            [1,1,1],
-            [1,1,1]
+            [1, 1, 1, 1, 2],
+            [1,-1,-2,-3, 5],
+            [2, 1,-3, 1,-9],
+						[3,-1,-1, 1,-6]
         ]
     );
 
@@ -119,10 +120,13 @@ function main()
             case '2':
                 $operationBuilder = new SumLinesBuilder($matrix);
                 break;
-            case '3':
+						case '3':
+								$operationBuilder = new SubtractLinesBuilder($matrix);
+								break;
+            case '4':
                 $operationBuilder = new MultiplyLineThenSumBuilder($matrix);
                 break;
-            case '4':
+            case '5':
                 $matrix->print();
                 break;
             case 'q':

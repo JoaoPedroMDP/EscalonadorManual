@@ -6,6 +6,7 @@ namespace Classes\Operations;
 
 use Classes\Elements\Line;
 use Classes\Elements\Matrix;
+use Exception;
 
 /**
  * Class MultiplyLineThenSum
@@ -18,30 +19,32 @@ class MultiplyLineThenSum extends MultiplyLine
      */
     protected $receiverLine;
 
-    /**
-     * MultiplyLineThenSum constructor.
-     * @param Matrix $matrix
-     * @param Line $receiverLine
-     * @param Line $indexToMultiply
-     * @param int $multiplier
-     */
-    public function __construct(Matrix $matrix,Line $receiverLine, Line $indexToMultiply, int $multiplier)
+		/**
+		 * MultiplyLineThenSum constructor.
+		 * @param Matrix $matrix
+		 * @param Line $receiverLine
+		 * @param Line $lineToMultiply
+		 * @param int $multiplier
+		 * @throws Exception
+		 */
+    public function __construct(Matrix $matrix, Line $receiverLine, Line $lineToMultiply, int $multiplier)
     {
         $this->receiverLine = $receiverLine;
         parent::__construct(
             $matrix,
-            $indexToMultiply,
+						$lineToMultiply,
             $multiplier
         );
     }
 
 		/**
 		 * Executa a operação
+		 * @throws Exception
 		 */
 		public function execute()
     {
         parent::execute();
-        $sum = new SumLines($this->matrix, $this->receiverLine, $this->lineToMultiply);
+        $sum = new SumLines($this->matrix, $this->lineToMultiply, $this->receiverLine);
         $sum->execute();
         $this->result = $sum->getResult();
     }

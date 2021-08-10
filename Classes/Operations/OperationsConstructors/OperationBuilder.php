@@ -17,7 +17,7 @@ abstract class OperationBuilder extends InputGetter
      */
     protected $matrix;
 
-    public function __construct(Matrix &$matrix)
+    public function __construct(Matrix $matrix)
     {
         $this->matrix = $matrix;
     }
