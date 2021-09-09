@@ -9,12 +9,20 @@ use Classes\Elements\Matrix;
 use Classes\InputParsers\Number;
 use Classes\Operations\MultiplyLineThenSum;
 use Classes\Outputs\Output;
+use Exception;
 
+/**
+ * Class MultiplyLineThenSumBuilder
+ * @package Classes\Operations\OperationsConstructors
+ */
 class MultiplyLineThenSumBuilder extends OperationBuilder
 {
 
-    public function build(Matrix $matrix)
-    {
+		/**
+		 * @throws Exception
+		 */
+		public function build(Matrix $matrix): MultiplyLineThenSum
+		{
         $this->printInstructions(self::class);
         Output::getData("a posição da Linha A");
 

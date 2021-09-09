@@ -43,7 +43,8 @@ class Matrix{
      */
     public function getLineFromUserInput(int $lineIndex): Line
 		{
-        return $this->lines[--$lineIndex];
+				$line = $this->lines[--$lineIndex];
+        return new Line($lineIndex, $line->toArray());
     }
 
 		/**
@@ -61,7 +62,7 @@ class Matrix{
 		 */
 		public function setLine(Line $line, int $index)
     {
-        $this->lines[$index] =$line;
+        $this->lines[$index] = $line;
     }
 
 
@@ -105,5 +106,20 @@ class Matrix{
 		public function isLastLine(int $i): bool
 		{
 				return $i == ($this->getLineCount()) - 1;
+		}
+
+		/**
+		 * @return array
+		 */
+		public function toArray(): array
+		{
+				$matrix = [];
+
+				foreach($this->lines as $line)
+				{
+						$matrix[] = $line->toArray();
+				}
+
+				return $matrix;
 		}
 }

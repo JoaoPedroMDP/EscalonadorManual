@@ -82,7 +82,7 @@ function executeOperation(OperationBuilder $operationBuilder, Matrix $matrix)
     $operation->getResultInMatrix()->print();
     Output::areYouSure();
     $wants = $inputGetter->getChar();
-    if($wants){
+    if($wants == "Y" || $wants == "y"){
         $operation->applyOnMatrix();
     }
 }

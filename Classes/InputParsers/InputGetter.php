@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Classes\InputParsers;
-
 
 /**
  * Class InputGetter
@@ -18,11 +16,6 @@ class InputGetter
     public function getNatural(): int
 		{
         $digit = $this->getChar();
-        if(!is_numeric($digit))
-        {
-            echo "Namoral vei? Era só digitar um numero, qual a dificuldade nisso, aff";
-            die;
-        }
         return intval($digit);
     }
 

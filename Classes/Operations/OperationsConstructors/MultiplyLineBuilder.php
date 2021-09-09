@@ -26,10 +26,10 @@ class MultiplyLineBuilder extends OperationBuilder
 		public function build(Matrix $matrix): MultiplyLine
     {
         $this->printInstructions(self::class);
-        Output::getData("a posição da linha a ser multiplicada");
+        Output::getData("A posição da linha a ser multiplicada");
         $lineToBeMultipliedIndex = $this->getNatural();
 
-        Output::getData("o multiplicador");
+        Output::getData("O multiplicador");
         $multiplier = new Number();
         $multiplier->buildFromInput();
 

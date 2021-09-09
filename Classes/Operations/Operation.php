@@ -52,7 +52,7 @@ abstract class Operation extends Loggable
      */
     public function getResultInMatrix(): Matrix
     {
-        $matrixCopy = $this->matrix;
+        $matrixCopy = new Matrix($this->matrix->toArray());
         $matrixCopy->setLine($this->getResult(), $this->indexBeingAffected);
         return $matrixCopy;
     }
