@@ -9,7 +9,8 @@ me permitem ter uma boa experiência com essa matéria. Frequentemente, ao copia
 troco o sinal sem querer, ou no lugar de dividir, multiplico. Enfim.
 
 Daí preferi passar duas tardes inteirinhas fazendo esse escalonador manual do que simplesmente 
-continuar tentando e em provavelmente 2 horas ter terminado os 2 últimos itens do meu trabalho
+continuar tentando e em provavelmente 2 horas ter terminado os 2 últimos itens do meu trabalho 
+da faculdade :)
 
 ## Execução
 É só ter o PHP em sua máquina e você consegue usar. Baixe este código e na pasta principal use
